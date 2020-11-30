@@ -203,6 +203,10 @@ namespace Umbraco.Web
 
                 case RuntimeLevel.Install:
                 case RuntimeLevel.Upgrade:
+                    // an unattended install is in progress and the application is restarting
+                    if (_runtime.Reason == RuntimeLevelReason.InstallEmptyDatabase && Equals(httpContext.Application["AppPoolRestarting"], true))
+                        return false;
+
                     // redirect to install
                     ReportRuntime(level, "Umbraco must install or upgrade.");
                     var installPath = UriUtility.ToAbsolute(SystemDirectories.Install);

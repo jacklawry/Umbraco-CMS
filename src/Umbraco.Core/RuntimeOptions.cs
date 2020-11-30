@@ -46,14 +46,12 @@ namespace Umbraco.Core
         /// </summary>
         /// <remarks>
         /// <para>By default, when a database connection string is configured and it is possible to connect to
-        /// the database, but the database is empty, the runtime enters the BootFailed level. If this options
-        /// is set to true, it enters the Install level instead.</para>
-        /// <para>It is then up to the implementor, that is setting this value, to take over the installation
-        /// sequence.</para>
+        /// the database, but the database is empty, the runtime enters the Install level. If this options
+        /// is set to <c>false</c>, it enters the BootFailed level instead.</para>
         /// </remarks>
         public static bool InstallEmptyDatabase
         {
-            get => _installMissingDatabase ?? BoolSetting("Umbraco.Core.RuntimeState.InstallEmptyDatabase", false);
+            get => _installMissingDatabase ?? BoolSetting("Umbraco.Core.RuntimeState.InstallEmptyDatabase", true);
             set => _installMissingDatabase = value;
         }
 

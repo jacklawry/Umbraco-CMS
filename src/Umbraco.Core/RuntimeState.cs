@@ -210,7 +210,7 @@ namespace Umbraco.Core
                 // can connect to the database but cannot check the upgrade state... oops
                 logger.Warn<RuntimeState>(e, "Could not check the upgrade state.");
 
-                if (RuntimeOptions.InstallEmptyDatabase)
+                if (RuntimeOptions.InstallEmptyDatabase && databaseFactory.IsDatabaseEmpty)
                 {
                     // ok to install on an empty database
                     Level = RuntimeLevel.Install;
